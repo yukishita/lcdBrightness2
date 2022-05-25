@@ -26,7 +26,7 @@ class IllumiGetter( object ):
 class RaspiIllumiGetter( IllumiGetter ):
 
     """ I2C読み込み準備 """
-    self.I2CBus = smbus.SMBus(1)
+    self.I2CBus = SMBus(1)
     self.I2CAddr = 0x23
 
     def __init__(self) -> None:
