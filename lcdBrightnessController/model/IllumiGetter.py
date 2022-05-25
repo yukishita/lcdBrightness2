@@ -1,4 +1,4 @@
-#import smbus
+import smbus
 import time
 import threading
 import statistics
@@ -24,16 +24,17 @@ class IllumiGetter( object ):
 
 """ Raspberry Pi 用の実装 """
 class RaspiIllumiGetter( IllumiGetter ):
+
+    """ I2C読み込み準備 """
+    self.I2CBus = smbus.SMBus(1)
+    self.I2CAddr = 0x23
+
     def __init__(self) -> None:
         super().__init__()
 
         """ 輝度取得スレッドの開始 """
         self.thread = threading.Thread(target=self.lxGetThread)
         self.thread.start()
-
-        """ I2C読み込み準備 """
-        self.I2CBus = smbus.SMBus(1)
-        self.I2CAddr = 0x23
 
     """ 輝度情報を更新するスレッド """
     def lxGetThread( self ):
