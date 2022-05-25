@@ -19,15 +19,14 @@ class IllumiGetter( object ):
         """ 過去取得分の平均値を取得 """
         average = statistics.mean( self.currentLX )
 
-        print(average)
         return average
 
 """ Raspberry Pi 用の実装 """
 class RaspiIllumiGetter( IllumiGetter ):
 
     """ I2C読み込み準備 """
-    self.I2CBus = SMBus(1)
-    self.I2CAddr = 0x23
+    I2CBus = smbus.SMBus(1)
+    I2CAddr = 0x23
 
     def __init__(self) -> None:
         super().__init__()
